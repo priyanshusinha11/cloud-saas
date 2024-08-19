@@ -22,6 +22,13 @@ export async function POST(request: NextRequest) {
     }
 
     try {
+        if (
+            !process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
+            !process.env.CLOUDINARY_API_KEY ||
+            !process.env.CLOUDINARY_API_SECRET
+        ) {
+            return NextResponse.json({ error: "Cloudinary credentials not found" }, { status: 500 })
+        }
         const formData = await request.formData();
         const file = formData.get("file") as File | null;
 
