@@ -50,16 +50,22 @@ function Home() {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      window.URL.revokeObjectURL(downloadUrl); 
+      window.URL.revokeObjectURL(downloadUrl);
     } catch (error) {
       console.error('Download error:', error);
-      
+
     }
   }, []);
 
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className="flex items-center justify-center h-screen">
+      <span className="loading loading-dots loading-xs"></span>
+      <span className="loading loading-dots loading-sm"></span>
+      <span className="loading loading-dots loading-md"></span>
+      <span className="loading loading-dots loading-lg"></span>
+    </div>
+
   }
 
   if (error) {
