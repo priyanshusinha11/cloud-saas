@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function VideoUpload() {
   const [file, setFile] = useState<File | null>(null)
@@ -17,8 +19,7 @@ function VideoUpload() {
     if (!file) return;
 
     if (file.size > MAX_FILE_SIZE) {
-      
-      alert("File size too large")
+      toast.error("File size too large. Please upload a file smaller than 70MB.")
       return;
     }
 
@@ -31,20 +32,24 @@ function VideoUpload() {
 
     try {
       const response = await axios.post("/api/video-upload", formData)
-      
-      router.push("/")
+
+      if (response.status === 200) {
+        toast.success("Upload successful!")
+        router.push("/")
+      } else {
+        toast.error("Upload failed. Please try again.")
+      }
     } catch (error) {
-      console.log(error)
-     
+      console.error("Upload error:", error)
+      toast.error("An error occurred during upload. Please try again.")
     } finally {
       setIsUploading(false)
     }
-
   }
-
 
   return (
     <div className="container mx-auto p-4">
+      <ToastContainer />
       <h1 className="text-2xl font-bold mb-4">Upload Video</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
