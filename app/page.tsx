@@ -9,9 +9,8 @@ export default function Home() {
         <p className="text-lg text-blue-200">
           Transform your media with AI-driven video compression and smart image cropping.
         </p>
-        <p className="text-lg text-blue-200">
-          Preserve quality, save space, and highlight what's important.
-        </p>
+        <p className="text-blue-200">Preserve quality, save space, and highlight what&apos;s important.</p>
+
 
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
           <Link href="/home" passHref>
