@@ -42,7 +42,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center space-x-2">
             <CropIcon className="text-3xl text-blue-400" />
-            <p className="text-blue-200">Smartly crop images to the perfect aspect ratio, focusing on what's important.</p>
+            <p className="text-blue-200">Smartly crop images to the perfect aspect ratio, focusing on what&apos;s important.</p>
           </div>
         </div>
       </div>
