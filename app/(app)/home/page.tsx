@@ -50,10 +50,10 @@ function Home() {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      window.URL.revokeObjectURL(downloadUrl); // Cleanup the object URL
+      window.URL.revokeObjectURL(downloadUrl); 
     } catch (error) {
       console.error('Download error:', error);
-      // Optional: Show a notification or alert
+      
     }
   }, []);
 
