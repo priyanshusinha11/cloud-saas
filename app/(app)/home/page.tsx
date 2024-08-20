@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import VideoCard from '@/components/VideoCard'
 import { Video } from '@/types'
+
 function Home() {
   const [videos, setVideos] = useState<Video[]>([])
   const [loading, setLoading] = useState(true)
@@ -14,13 +15,11 @@ function Home() {
       if (Array.isArray(response.data)) {
         setVideos(response.data)
       } else {
-        throw new Error(" Unexpected response format");
-
+        throw new Error("Unexpected response format");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Failed to fetch videos:", error);
       setError("Failed to fetch videos")
-
     } finally {
       setLoading(false)
     }
@@ -30,22 +29,41 @@ function Home() {
     fetchVideos()
   }, [fetchVideos])
 
-  const handleDownload = useCallback((url: string, title: string) => {
-    () => {
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `${title}.mp4`);
-      link.setAttribute("target", "_blank");
+  const handleDownload = useCallback(async (url: string, title: string) => {
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'video/mp4',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to download video');
+      }
+
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', `${title}.mp4`);
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
-
+      link.remove();
+      window.URL.revokeObjectURL(downloadUrl); // Cleanup the object URL
+    } catch (error) {
+      console.error('Download error:', error);
+      // Optional: Show a notification or alert
     }
+  }, []);
 
-  }, [])
 
   if (loading) {
     return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
@@ -57,15 +75,13 @@ function Home() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {
-            videos.map((video) => (
-              <VideoCard
-                key={video.id}
-                video={video}
-                onDownload={handleDownload}
-              />
-            ))
-          }
+          {videos.map((video) => (
+            <VideoCard
+              key={video.id}
+              video={video}
+              onDownload={handleDownload}
+            />
+          ))}
         </div>
       )}
     </div>
