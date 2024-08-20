@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cloud SaaS Application
 
-## Getting Started
+Welcome to the Cloud SaaS application! This application allows users to log in, upload images, crop them for various social media formats (e.g., Instagram portraits, Facebook covers), upload videos, and download compressed versions of those videos.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Authentication**: Secure user login and registration using [Clerk](https://clerk.dev/).
+- **Image Upload and Cropping**: Upload images and crop them according to popular social media dimensions.
+- **Video Upload and Compression**: Upload videos and download compressed versions to save storage and bandwidth.
+- **Cloudinary Integration**: Handle all file operations efficiently using [Cloudinary](https://cloudinary.com/).
+- **Responsive UI**: Enhanced UI components with [DaisyUI](https://daisyui.com/).
+- **Database**: Uses [Prisma](https://www.prisma.io/) with [NeonDB](https://neon.tech/) for database management.
+- **API Handling**: API requests are managed using [Axios](https://axios-http.com/).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **Authentication**: [Clerk](https://clerk.dev/)
+- **File Storage and Operations**: [Cloudinary](https://cloudinary.com/)
+- **Database**: [Prisma](https://www.prisma.io/) with [NeonDB](https://neon.tech/)
+- **UI Components**: [DaisyUI](https://daisyui.com/)
+- **API Handling**: [Axios](https://axios-http.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+1. **Clone the repository**:
+    ```bash
+    git clone git@github.com:priyanshusinha11/cloud-saas.git
+    ```
+2. **Navigate to the project directory**:
+    ```bash
+    cd cloud-saas
+    ```
+3. **Install dependencies**:
+    ```bash
+    npm install
+    ```
+4. **Set up environment variables**: Create a `.env.local` file in the root of your project and add the following variables:
+    ```bash
+   refer the .env.sample file in the root
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+5. **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. **Open the app**: Go to [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+- **Log In**: Users can log in or sign up using their email.
+- **Upload and Crop Images**: After logging in, users can upload images, choose a preset crop size, and download the cropped image.
+- **Upload and Compress Videos**: Users can upload videos and download the compressed versions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any inquiries, please contact [priyanshu.eleven.dev@gmail.com](mailto:priyanshu.eleven.dev@gmail.com).
+
+---
+
+[GitHub Repository](git@github.com:priyanshusinha11/cloud-saas.git)
